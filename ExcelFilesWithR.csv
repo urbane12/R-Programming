@@ -1,0 +1,29 @@
+# Excel Files
+# This file contains the steps needed to run Excel Files / CSV files, specifically I used a CSV file to avoid issues wit the xlsx library 
+#Install packages for the readxl
+install.packages('readxl')
+#Downloading readxl contents
+library(readxl)
+#read from a sheet
+excel_sheets('Sample-Sales-Data.xlsx')
+#Store sheet data into a data frame
+df <- read_excel('Sample-Sales-Data.xlsx', sheet = "Sheet1")
+#Show the top 6 entries in the dataframe
+head(df)
+#Add up all integers in the Value column of the dataframe
+sum(df$Value)
+#Details on what is store on the data frame
+summary(df)
+#Store the workbook to a variable 
+entire.workbook <- lapply(excel_sheets('Sample-Sales-Data.xlsx'), read_excel, path="Sample-Sales-Data.xlsx")
+#Check varible contents
+entire.workbook
+#List all the sales reps by name, this will be a long list
+list(df$Sales_Rep_Name)
+#Installing xlsx packages (If you get an error you may skip to the write portion with a csv file)
+install.packages('xlsx')
+#Download xlsx contents
+library(xlsx)
+#Write to the file all the data stored in our mtcars dataframe
+write.csv(mtcars, "output_example.csv")
+
